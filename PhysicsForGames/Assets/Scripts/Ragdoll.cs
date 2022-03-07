@@ -20,7 +20,7 @@ public class Ragdoll : MonoBehaviour
             {
                 rb.isKinematic = !value;
             }
-            if (value)
+            if (!value)
                 cam.ChangeCameraPos("FPS");
             else
                 cam.ChangeCameraPos("TPS");

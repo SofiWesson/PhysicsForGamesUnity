@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraPosHandler : MonoBehaviour
 {
     Camera cam = null;
-    Rigidbody player = null;
 
     Transform FPS = null;
     Transform TPS = null;
@@ -26,13 +25,9 @@ public class CameraPosHandler : MonoBehaviour
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
-        player = GetComponent<Rigidbody>();
 
-        if (player != null)
-        {
-            FPS = player.GetComponentInChildren<Transform>().Find("FPSCamPos");
-            TPS = player.GetComponentInChildren<Transform>().Find("TPSCamPos");
-        }
+        FPS = GetComponentInChildren<Transform>().Find("FPSCamPos");
+        TPS = GetComponentInChildren<Transform>().Find("TPSCamPos");
         
         if (cam != null && FPS != null && TPS != null)
         {
