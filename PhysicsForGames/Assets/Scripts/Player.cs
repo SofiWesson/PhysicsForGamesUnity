@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Transform grenadeSpawn;
+    public GameObject grenadePrefab;
+
     CharacterController controller = null;
     Animator animator = null;
     Ragdoll ragdoll = null;
@@ -42,7 +45,17 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+            if (!ragdoll.RagdollOn)
+                controller.Move(jult / 4);
             ragdoll.RagdollOn = !ragdoll.RagdollOn;
+            if (ragdoll.RagdollOn)
+                controller.Move(new Vector3(0, 0, -jult.z) / 4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GameObject grenade = Instantiate(grenadePrefab, grenadeSpawn.position, Quaternion.identity);
+            
         }
     }
 
