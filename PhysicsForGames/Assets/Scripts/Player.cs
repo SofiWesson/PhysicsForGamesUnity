@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             GameObject grenade = Instantiate(grenadePrefab, grenadeSpawn.position, Quaternion.identity);
-            
         }
     }
 

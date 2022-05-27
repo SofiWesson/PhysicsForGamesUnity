@@ -49,7 +49,8 @@ MonoBehaviour:
   explosionRadius: {fileID: 7127427168996382656}
   explosionTimer: 4
   explosionDelay: 0.5
-  force: 200
+  force: 500
+  objectsInRadius: []
 --- !u!54 &5156541754691135926
 Rigidbody:
   m_ObjectHideFlags: 0

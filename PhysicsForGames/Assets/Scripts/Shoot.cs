@@ -34,6 +34,9 @@ public class Shoot : MonoBehaviour
             hit = raycaster.GetHit();
             gb = raycaster.GetObjectHit();
 
+            if (gb == null)
+                return;
+
             if (gb.name != "Explosion_Radius")
             {
                 Quaternion rotation = new Quaternion(0, 0, 0, 0);

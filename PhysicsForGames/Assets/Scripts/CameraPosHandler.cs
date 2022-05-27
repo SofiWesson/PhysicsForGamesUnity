@@ -9,6 +9,10 @@ public class CameraPosHandler : MonoBehaviour
     Transform FPS = null;
     Transform TPS = null;
 
+    CharacterController player = null;
+
+    float playerCapsuleRadius = 0.2f;
+
     // Only used to set initial camera postion
     public bool isFPSMode = true;
 
@@ -24,6 +28,8 @@ public class CameraPosHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = transform.root.GetComponent<CharacterController>();
+
         cam = GetComponentInChildren<Camera>();
 
         FPS = GetComponentInChildren<Transform>().Find("FPSCamPos");
@@ -41,16 +47,7 @@ public class CameraPosHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ================================================ REMOVE ================================================
-        if (test)
-        {
-            test = false;
-            if (cam.transform.position == FPS.position)
-                cam.transform.position = TPS.position;
-            else
-                cam.transform.position = FPS.position;
-        }
-        // ========================================================================================================
+
     }
 
     // move camera between fps and tps depending on weather or not player is ragdolling or not

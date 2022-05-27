@@ -11,6 +11,7 @@ public class Grenade : MonoBehaviour
 
     public float force = 0f;
 
+    [SerializeField]
     List<Rigidbody> objectsInRadius = new List<Rigidbody>();
 
     // Start is called before the first frame update
@@ -32,6 +33,12 @@ public class Grenade : MonoBehaviour
     {
         explosionTimer -= Time.deltaTime;
 
+        foreach (Rigidbody obj in objectsInRadius)
+        {
+            if (obj == null)
+                objectsInRadius.Remove(obj);
+        }
+
         if (explosionTimer < 0)
         {
             foreach (Rigidbody obj in objectsInRadius)
@@ -42,7 +49,7 @@ public class Grenade : MonoBehaviour
             }
 
             explosionDelay -= Time.deltaTime;
-            if (explosionDelay < 0)
+            if (explosionTimer < 0)
             {
                 Destroy(gameObject);
             }
@@ -54,6 +61,7 @@ public class Grenade : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb == null)
             rb = HasParent(other);
+
         if (rb != null)
         {
             rb = HasParent(rb);
@@ -62,11 +70,13 @@ public class Grenade : MonoBehaviour
                     objectsInRadius.Add(rb);
         }
     }
-    private void OnCollisionExit(Collision collision)
+
+    private void OnTriggerExit(Collider other)
     {
-        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+        Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         if (rb == null)
-            rb = HasParent(collision);
+            rb = HasParent(other);
+
         if (rb != null)
         {
             rb = HasParent(rb);
