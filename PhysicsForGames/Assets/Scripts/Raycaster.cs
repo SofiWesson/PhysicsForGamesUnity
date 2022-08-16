@@ -22,6 +22,6 @@ public class Raycaster : MonoBehaviour
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Physics.Raycast(ray, out hit, 500);
+        Physics.Raycast(ray, out hit, 500, 9);
     }
 }
