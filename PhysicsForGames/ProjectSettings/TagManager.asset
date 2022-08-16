@@ -5,16 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Decal
+  - Dummy
+  - Battery
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Dummy
   - Water
   - UI
-  - 
-  - 
-  - 
+  - DummyBase
+  - Ragdoll
+  - Wreaking Ball
   - 
   - 
   - 
