@@ -644,7 +644,6 @@ GameObject:
   - component: {fileID: 588372221505977716}
   - component: {fileID: 598261951254595483}
   - component: {fileID: 4977825659388963199}
-  - component: {fileID: 8969602360336993585}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Wreakingball
@@ -841,18 +840,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8969602360336993585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998524428723656646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7950e8f35fe5e7f4ebfcbb6e0dbae52d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3312083139816374288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,6 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7950e8f35fe5e7f4ebfcbb6e0dbae52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: {fileID: 0}
 --- !u!1 &9076720562469441736
 GameObject:
   m_ObjectHideFlags: 0

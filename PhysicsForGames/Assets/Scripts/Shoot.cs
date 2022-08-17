@@ -48,7 +48,7 @@ public class Shoot : MonoBehaviour
 
                 Quaternion rotation = new Quaternion(0, 0, 0, 0);
                 GameObject hole = Instantiate(bulletHole, hit.point, rotation);
-                
+
                 hole.transform.parent = gb.transform;
 
                 hole.transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation, 360);
