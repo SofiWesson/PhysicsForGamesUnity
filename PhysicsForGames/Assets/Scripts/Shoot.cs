@@ -6,6 +6,7 @@ public class Shoot : MonoBehaviour
 {
     public GameObject bulletHole;
     public ParticleSystem muzzleFlash;
+    public Reset reset;
 
     GameObject gb;
 
@@ -39,6 +40,12 @@ public class Shoot : MonoBehaviour
 
             if (gb.name != "Explosion_Radius")
             {
+                if (gb.tag == "Reset")
+                {
+                    reset.ResetWreakingball();
+                    return;
+                }
+
                 Quaternion rotation = new Quaternion(0, 0, 0, 0);
                 GameObject hole = Instantiate(bulletHole, hit.point, rotation);
                 
@@ -47,15 +54,14 @@ public class Shoot : MonoBehaviour
                 hole.transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation, 360);
                 hole.transform.localPosition += hit.normal / 10000;
 
-                // muzzleFlash.Stop(true);
-                // muzzleFlash.Play(true);
-
                 Rigidbody rb = null;
                 rb = hit.transform.GetComponent<Rigidbody>();
+
+                if (gb.tag == "Wreakingball")
+                    rb.AddForce(ray.direction * 1000.0f);
+
                 if (rb != null)
-                {
                     rb.AddForce(ray.direction * 100.0f);
-                }
             }
         }
     }
