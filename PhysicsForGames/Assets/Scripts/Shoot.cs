@@ -42,7 +42,7 @@ public class Shoot : MonoBehaviour
             {
                 if (gb.tag == "Reset")
                 {
-                    reset.ResetWreakingball();
+                    reset.ResetScene();
                     return;
                 }
 

@@ -12,7 +12,6 @@ public class WreakingBallDummyCollision : MonoBehaviour
         {
             Ragdoll ragdoll = other.transform.GetChild(0).GetComponent<Ragdoll>();
             ragdoll.RagdollOn = true;
-            score.SetLaunched(true);
         }
     }
 }

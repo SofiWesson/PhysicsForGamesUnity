@@ -19,6 +19,11 @@ public class Reset : MonoBehaviour
 
     public Score score;
 
+    public List<LandingPad> launchPads;
+    public List<Rigidbody> greyBoxes;
+    List<Vector3> greyBoxPositions = new List<Vector3>();
+    List<Quaternion> greyBoxRotations = new List<Quaternion>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +41,26 @@ public class Reset : MonoBehaviour
         Transform hips = dummy.GetChild(0).GetChild(1);
         Rigidbody hipsRB = hips.GetComponent<Rigidbody>();
         score.SetHips(hipsRB);
+
+        foreach (Rigidbody box in greyBoxes)
+        {
+            greyBoxPositions.Add(box.position);
+            greyBoxRotations.Add(box.rotation);
+        }
     }
 
-    public void ResetWreakingball()
+    public void ResetScene()
     {
         battery.position = batteryResetPos;
         battery.rotation = battertResetRot;
         battery.gameObject.SetActive(true);
         battery.GetComponent<Rigidbody>().isKinematic = false;
+
+        for (int i = 0; i < greyBoxes.Count; i++)
+        {
+            greyBoxes[i].position = greyBoxPositions[i];
+            greyBoxes[i].rotation = greyBoxRotations[i];
+        }
 
         wreakingball.GetChild(wreakingball.childCount - 1).GetComponent<Rigidbody>().isKinematic = true;
         for (int i = 0; i < wreakingball.childCount; i++)
@@ -51,6 +68,11 @@ public class Reset : MonoBehaviour
             Transform child = wreakingball.GetChild(i);
             child.position = wreakingballResetPos[i];
             child.rotation = wreakingballResetRot[i];
+        }
+
+        foreach (LandingPad pad in launchPads)
+        {
+            pad.ClearLaunchPads();
         }
 
         Destroy(dummy.gameObject);

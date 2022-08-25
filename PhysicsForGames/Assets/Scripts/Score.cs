@@ -10,36 +10,20 @@ public class Score : MonoBehaviour
     Rigidbody dummyHips;
     Vector2 dummyStartPos = Vector2.zero;
 
-    bool launched = false;
-    float record = 0;
+    float score = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "record " + record.ToString() + " meters\n" + "score 0 meters";
+        scoreText.text = "score " + score.ToString();
     }
 
-    private void Update()
+    public void RecordScore(int score)
     {
-        if (launched)
-        {
-            if (dummyHips.IsSleeping())
-                RecordDistance();
-        }
+        if (score > this.score)
+            this.score = score;
+        scoreText.text = "score " + this.score.ToString();
     }
-
-    void RecordDistance()
-    {
-        float distance = Vector2.Distance(dummyStartPos, dummyHips.position);
-        launched = false;
-
-        if (distance > record)
-            record = distance;
-        scoreText.text = "record " + record.ToString() + " meters\n" + "score " + distance.ToString() + " meters";
-    }
-
-    public bool GetLaunched() { return launched; }
-    public void SetLaunched(bool state) { launched = state; }
 
     public void SetStartPos(Vector2 startPos) { dummyStartPos = startPos; }
     public void SetHips(Rigidbody hips) { dummyHips = hips; }
