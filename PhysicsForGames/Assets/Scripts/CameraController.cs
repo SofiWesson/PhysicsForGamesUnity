@@ -23,19 +23,17 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cameraPosHandler = GetComponentInParent<CameraPosHandler>();
-        isFPSMode = cameraPosHandler.IsFPSMode;
+        isFPSMode = cameraPosHandler.isFPSMode;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // lock curser to screen
         Cursor.lockState = CursorLockMode.Locked;
-        isFPSMode = cameraPosHandler.IsFPSMode;
+        isFPSMode = cameraPosHandler.isFPSMode;
 
-        // right drag rotates the camera
-        //angles = new Vector3(0, 0, 0);
-        //
-        //angles = transform.eulerAngles;
+        // get mouse x and y input
         float dx = Input.GetAxis("Mouse Y");
         float dy = Input.GetAxis("Mouse X");
 
@@ -74,6 +72,7 @@ public class CameraController : MonoBehaviour
 
     Vector3 GetTargetPosition()
     {
+        // look towards player
         return target.position + heightOffset * Vector3.up;
     }
 }

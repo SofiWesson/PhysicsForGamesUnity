@@ -30,28 +30,31 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         ragdoll = GetComponentInChildren<Ragdoll>();
 
-        velocity = new Vector3(0, 0, 0);
+        velocity = Vector3.zero;
     }
 
     private void Update()
     {
+        // get movement input
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
+
+        // get jump input
         if (!ragdoll.RagdollOn)
             jumpInput = Input.GetButton("Jump");
 
+        // move forward
         animator.SetFloat("Forwards", moveInput.y);
+        // jump
         animator.SetBool("Jump", !isGrounded);
 
+        // toggle ragdoll
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            if (!ragdoll.RagdollOn)
-                controller.Move(jult / 4);
             ragdoll.RagdollOn = !ragdoll.RagdollOn;
-            if (ragdoll.RagdollOn)
-                controller.Move(new Vector3(0, 0, -jult.z) / 4);
         }
 
+        // throw granade
         if (Input.GetKeyDown(KeyCode.G))
         {
             GameObject grenade = Instantiate(grenadePrefab, grenadeSpawn.position, Quaternion.identity);

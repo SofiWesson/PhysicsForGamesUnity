@@ -13,8 +13,9 @@ public class LandingPad : MonoBehaviour
     {
         foreach (Rigidbody dummyPart in dummyPartsOnPad)
         {
+            // check if dummy parts on pad are moving
             if (dummyPart.IsSleeping())
-                score.RecordScore(value);
+                score.RecordScore(value); // update score
         }
     }
 
@@ -25,10 +26,11 @@ public class LandingPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Dummy")
+        if (other.tag == "Dummy") // check for if dummy is on pad
         {
             if (other.GetComponent<Rigidbody>())
             {
+                // add dummy parts to list
                 dummyPartsOnPad.Add(other.GetComponent<Rigidbody>());
             }
         }

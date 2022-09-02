@@ -15,6 +15,7 @@ public class Ragdoll : MonoBehaviour
         get { return !m_animator.enabled; }
         set
         {
+            // enable / disable the animator
             m_animator.enabled = !value;
             foreach (Rigidbody rb in m_rigidbodies)
             {
@@ -22,10 +23,10 @@ public class Ragdoll : MonoBehaviour
             }
             if (tag != "Dummy")
             {
-                if (!value)
-                    cam.ChangeCameraPos("FPS");
+                if (value)
+                    cam.ChangeCameraPos("TPS"); // change camera to third person camera if the players ragdoll is enabled
                 else
-                    cam.ChangeCameraPos("TPS");
+                    cam.ChangeCameraPos("FPS"); // change camera to first person camera if the players ragdoll is disabled
             }
         }
     }
@@ -35,6 +36,7 @@ public class Ragdoll : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
 
+        // set all player rigidbodies to be kinematic
         foreach (Rigidbody rb in m_rigidbodies)
         {
             rb.isKinematic = true;

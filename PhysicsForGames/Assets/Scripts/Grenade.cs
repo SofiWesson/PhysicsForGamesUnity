@@ -17,14 +17,17 @@ public class Grenade : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // get camera
         Camera cam = FindObjectOfType<Camera>();
         Transform tCam = cam.transform;
 
         explosionTimer = 3;
-        Rigidbody rb = GetComponent<Rigidbody>();
-        Vector3 push = tCam.forward * 150 + Vector3.up * 50;
-        rb.AddRelativeForce(push);
 
+        // add throw force
+        Vector3 push = tCam.forward * 150 + Vector3.up * 50;
+        GetComponent<Rigidbody>().AddRelativeForce(push);
+
+        // set active
         explosionRadius.SetActive(true);
     }
 
@@ -33,21 +36,26 @@ public class Grenade : MonoBehaviour
     {
         explosionTimer -= Time.deltaTime;
 
-        foreach (Rigidbody obj in objectsInRadius)
+        // remove obsolete objects from list of objects to be effected by explosion
+        for (int i = 0; i < objectsInRadius.Count; i++)
         {
-            if (obj == null)
-                objectsInRadius.Remove(obj);
+            if (objectsInRadius[i] == null)
+                objectsInRadius.Remove(objectsInRadius[i]);
         }
 
         if (explosionTimer < 0)
         {
             foreach (Rigidbody obj in objectsInRadius)
             {
-                SphereCollider exploisionRadiusCollider = explosionRadius.GetComponent<SphereCollider>();
-
-                obj.AddExplosionForce(force, this.transform.position, exploisionRadiusCollider.radius);
+                if (obj != null)
+                {
+                    // add force to objects in explosion radius
+                    SphereCollider exploisionRadiusCollider = explosionRadius.GetComponent<SphereCollider>();
+                    obj.AddExplosionForce(force, this.transform.position, exploisionRadiusCollider.radius);
+                }
             }
 
+            // destroy grenade
             explosionDelay -= Time.deltaTime;
             if (explosionTimer < 0)
             {
@@ -58,39 +66,43 @@ public class Grenade : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // check if other has rigidbody if not, check if its parent does
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb == null)
             rb = HasParent(other);
 
         if (rb != null)
         {
-            rb = HasParent(rb);
+            rb = HasParent(rb); // check if rigidbody has parent with a rigidbody
             if (rb != null)
                 if (!objectsInRadius.Contains(rb))
-                    objectsInRadius.Add(rb);
+                    objectsInRadius.Add(rb); // add rigidbody to list
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // check if other has rigidbody if not, check if its parent does
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         if (rb == null)
             rb = HasParent(other);
 
         if (rb != null)
         {
-            rb = HasParent(rb);
+            rb = HasParent(rb); // check if rigidbody has parent with a rigidbody
             if (objectsInRadius.Contains(rb))
-                objectsInRadius.Remove(rb);
+                objectsInRadius.Remove(rb); // remove rigidbody from list
         }
     }
 
+    // check if rigidbody has parent that is also a rigidbody
     Rigidbody HasParent(Rigidbody a_rb)
     {
         Rigidbody rb = a_rb;
 
         if (rb.transform.parent != null)
         {
+            // check if root has rigidbody, if so set rb to be root
             Transform t = rb.transform.root;
             if (t.GetComponent<Rigidbody>() != null)
                 rb = t.GetComponent<Rigidbody>();
@@ -99,27 +111,15 @@ public class Grenade : MonoBehaviour
         return rb;
     }
 
+    // check if collider has parent that is rigidbody
     Rigidbody HasParent(Collider a_collider)
     {
         Rigidbody rb = null;
 
         if (a_collider.transform.parent != null)
         {
+            // check if root has rigidbody, if so set rb to be root
             Transform t = a_collider.transform.root;
-            if (t.GetComponent<Rigidbody>() != null)
-                rb = t.GetComponent<Rigidbody>();
-        }
-
-        return rb;
-    }
-
-    Rigidbody HasParent(Collision a_collision)
-    {
-        Rigidbody rb = null;
-
-        if (a_collision.transform.parent != null)
-        {
-            Transform t = a_collision.transform.root;
             if (t.GetComponent<Rigidbody>() != null)
                 rb = t.GetComponent<Rigidbody>();
         }

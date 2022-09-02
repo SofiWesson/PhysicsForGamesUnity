@@ -12,6 +12,7 @@ public class Raycaster : MonoBehaviour
     public RaycastHit GetHit() { return hit; }
     public GameObject GetObjectHit()
     { 
+        // get the game object hit by the ray
         if (hit.transform != null)
             return hit.transform.gameObject;
         else
@@ -21,7 +22,7 @@ public class Raycaster : MonoBehaviour
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        // cast a ray every frame
         Physics.Raycast(ray, out hit, 500, 9);
     }
 }

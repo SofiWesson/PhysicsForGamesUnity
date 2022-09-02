@@ -9,9 +9,13 @@ public class BatteryTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // checks if object on pad is a bettery
         if (other.tag == "Battery")
         {
+            // released the wreaking ball
             wreakingBall.isKinematic = false;
+
+            // disables the battery
             battery = other.gameObject;
             battery.SetActive(false);
             battery.GetComponent<Rigidbody>().isKinematic = true;

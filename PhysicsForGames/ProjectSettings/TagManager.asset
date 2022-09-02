@@ -9,6 +9,7 @@ TagManager:
   - Battery
   - Wreakingball
   - Reset
+  - PlayerPart
   layers:
   - Default
   - TransparentFX

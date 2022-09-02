@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - CameraPosHandler
     - Exit
     - Grenade
+    - LandingPad
     - Player
     - Ragdoll
     - Raycaster
@@ -80,47 +81,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1448}
     - Class: 114
-      Script: {instanceID: 1524}
+      Script: {instanceID: 1514}
     - Class: 114
-      Script: {instanceID: 1564}
+      Script: {instanceID: 1554}
     - Class: 114
-      Script: {instanceID: 1594}
+      Script: {instanceID: 1584}
     - Class: 114
-      Script: {instanceID: 1846}
+      Script: {instanceID: 1836}
     - Class: 114
-      Script: {instanceID: 1858}
+      Script: {instanceID: 1848}
     - Class: 114
-      Script: {instanceID: 2032}
+      Script: {instanceID: 2022}
     - Class: 114
-      Script: {instanceID: 2200}
+      Script: {instanceID: 2190}
     - Class: 114
-      Script: {instanceID: 2240}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2366}
+      Script: {instanceID: 2356}
     - Class: 114
-      Script: {instanceID: 2374}
+      Script: {instanceID: 2364}
     - Class: 114
-      Script: {instanceID: 2680}
+      Script: {instanceID: 2412}
     - Class: 114
-      Script: {instanceID: 2724}
+      Script: {instanceID: 2672}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2716}
+    - Class: 114
+      Script: {instanceID: 2852}
+    - Class: 114
+      Script: {instanceID: 3050}
     - Class: 114
       Script: {instanceID: 3058}
     - Class: 114
-      Script: {instanceID: 3066}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3086}
+      Script: {instanceID: 3082}
     - Class: 114
-      Script: {instanceID: 3090}
+      Script: {instanceID: 3142}
     - Class: 114
-      Script: {instanceID: 3150}
+      Script: {instanceID: 3398}
     - Class: 114
-      Script: {instanceID: 3406}
+      Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 3440}
-    - Class: 114
-      Script: {instanceID: 3544}
+      Script: {instanceID: 3536}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -404,6 +407,12 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 6d3d9fa48db8ad8922b3e96d9b53db56
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LandingPad
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -530,7 +539,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: a511ed95e2199a810ccf12c07adb8a40
+      Hash: 2af0e84aef7934672e652329d465016e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Reset
@@ -657,4 +666,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/Test Scene.unity
-  playerPath: D:/AIE/Builds/UnityPhysics/PhysicsForGames.exe
+  playerPath: D:/AIE/_ToSubmit/Physics/SofiWesson_AdvancedPhysicsSimRelease/PhysicsForGames.exe
